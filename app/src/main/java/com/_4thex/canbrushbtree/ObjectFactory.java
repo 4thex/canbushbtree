@@ -6,6 +6,6 @@ public class ObjectFactory<T extends Comparable<T>> {
     }
 
     public Key<T> createKey(Tree<T> tree, T value) {
-
+        
     }
 }
