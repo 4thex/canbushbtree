@@ -16,4 +16,6 @@ public abstract class Tree<T extends Comparable<T>> {
      */
     public abstract Node<T> getRoot();
 
+    public abstract Key<T> insert(T value);
+
 }
