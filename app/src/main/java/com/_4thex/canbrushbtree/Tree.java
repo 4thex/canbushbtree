@@ -18,4 +18,6 @@ public abstract class Tree<T extends Comparable<T>> {
 
     public abstract Key<T> insert(T value);
 
+    public abstract SearchResult<T> search(T value);
+
 }

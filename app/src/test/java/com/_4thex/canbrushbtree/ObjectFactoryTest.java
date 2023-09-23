@@ -11,12 +11,8 @@ public class ObjectFactoryTest {
         ObjectFactory<Integer> factory = new ObjectFactory<Integer>();
         Tree<Integer> tree = factory.createTree(5);
         assertNotNull(tree);
-    }
-
-    @Test
-    void testCreateTreeOfOrder() {
-        ObjectFactory<Integer> factory = new ObjectFactory<Integer>();
-        Tree<Integer> tree = factory.createTree(5);
         assertEquals(5, tree.getOrder());
     }
+
+    
 }
