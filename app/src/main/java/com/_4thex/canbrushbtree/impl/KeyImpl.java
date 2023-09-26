@@ -14,13 +14,13 @@ public class KeyImpl<T extends Comparable<T>> extends Key<T> {
     }
 
     @Override
-    public Key<T> getHigherChild() {
+    public Node<T> getHigherChild() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getHigherChild'");
     }
 
     @Override
-    public Key<T> getLowerChild() {
+    public Node<T> getLowerChild() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getLowerChild'");
     }

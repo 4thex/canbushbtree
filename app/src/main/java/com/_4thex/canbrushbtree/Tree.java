@@ -10,11 +10,7 @@ public abstract class Tree<T extends Comparable<T>> {
      */
     public abstract int getOrder();
 
-    /**
-     * The root {@link Node} of the tree.
-     * @return The root {@link Node} of the tree.
-     */
-    public abstract Node<T> getRoot();
+    public abstract Node<T> getRootNode();
 
     public abstract Key<T> insert(T value);
 
