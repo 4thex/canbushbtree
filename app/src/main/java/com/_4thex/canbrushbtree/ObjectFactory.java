@@ -16,7 +16,7 @@ public class ObjectFactory<T extends Comparable<T>> {
         return new TreeImpl<T>(this, order);
     }
 
-    public Node<T> createNode(Tree<T> tree) {
-        return new NodeImpl<T>(tree);
+    public Node<T> createNode(Tree<T> tree, Node<T> parent) {
+        return new NodeImpl<T>(tree, parent);
     }
 }

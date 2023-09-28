@@ -11,27 +11,32 @@ public class NodeImpl<T extends Comparable<T>> extends Node<T> {
 
     private Vector<Key<T>> keys;
     private Tree<T> tree;
-
-    public NodeImpl(Tree<T> tree) {
+    private Node<T> parent;
+    
+    public NodeImpl(Tree<T> tree, Node<T> parent) {
         this.tree = tree;
+        this.parent = parent;
         this.keys = new Vector<Key<T>>();
     }
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCount'");
+        return this.keys.size();
     }
 
     @Override
     public void insert(Key<T> key) {
+        if(this.getCount()==0) {
+            this.keys.add(key);
+            return;
+        }
         Key<T> current = this.getMedianKey();
         if(current.get().compareTo(key.get()) == 0) {
             // Nothing to do
             return;
         }
         if(current.get().compareTo(key.get()) > 0) {
-            
+
         }
         this.keys.add(key);
     }
@@ -58,15 +63,11 @@ public class NodeImpl<T extends Comparable<T>> extends Node<T> {
             return SearchResult.createFound(median);
         }
         return SearchResult.createNotFound();
-        // int index = 0;
-        // Key<T> current;
-        // while(index < this.keys.size()) {
-        //     current = this.keys.get(index);
-        //     if(current.get().equals(value)) {
-        //         return SearchResult.createFound(current);
-        //     }
-        // }
-        // return SearchResult.createNotFound();
+    }
+
+    @Override
+    public void remove(Key<T> key) {
+        
     }
     
 }

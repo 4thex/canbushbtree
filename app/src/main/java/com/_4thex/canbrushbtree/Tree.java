@@ -3,7 +3,7 @@ package com._4thex.canbrushbtree;
 /**
  * The B-Tree
  */
-public abstract class Tree<T extends Comparable<T>> {
+public abstract class Tree<T extends Comparable<T>> implements IKeyContainer<T> {
     /**
      * The order of the tree. This number is the max number of children of in each {@link Node}
      * @return The order of the tree

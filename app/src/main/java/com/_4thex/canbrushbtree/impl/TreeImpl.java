@@ -16,7 +16,7 @@ public class TreeImpl<T extends Comparable<T>> extends Tree<T> {
     public TreeImpl(ObjectFactory<T> objectFactory, int order) {
         this.factory = objectFactory;
         this.order = order;
-        this.rootNode = objectFactory.createNode(this);
+        this.rootNode = objectFactory.createNode(this, null);
     }
 
     @Override
