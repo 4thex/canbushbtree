@@ -5,8 +5,9 @@ package com._4thex.canbrushbtree;
  */
 public abstract class Node<T extends Comparable<T>>  implements IKeyContainer<T> {
     public abstract int getCount();
-    public abstract Key<T> getLowestKey();
-    public abstract Key<T> getHighestKey();
-    public abstract Key<T> getMedianKey();
+    public abstract Key<T> getMedian();
+    public abstract void setMedian(Key<T> key);
     public abstract SearchResult<T> search(T value);
+    public abstract Node<T> getParent();
+    public abstract void setParent();
 }

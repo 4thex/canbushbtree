@@ -1,7 +1,5 @@
 package com._4thex.canbrushbtree.impl;
 
-import java.util.Vector;
-
 import com._4thex.canbrushbtree.Key;
 import com._4thex.canbrushbtree.Node;
 import com._4thex.canbrushbtree.Tree;
@@ -39,6 +37,22 @@ public class TreeImpl<T extends Comparable<T>> extends Tree<T> {
     @Override
     public Node<T> getRootNode() {
         return this.rootNode;
+    }
+
+    @Override
+    public void insert(Key<T> key) {
+        this.rootNode.insert(key);
+    }
+
+    @Override
+    public void remove(Key<T> key) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+    }
+
+    @Override
+    public void setRootNode(Node<T> node) {
+        this.rootNode = node;
     }
 
 }

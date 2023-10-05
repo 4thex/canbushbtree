@@ -11,6 +11,7 @@ public abstract class Tree<T extends Comparable<T>> implements IKeyContainer<T> 
     public abstract int getOrder();
 
     public abstract Node<T> getRootNode();
+    public abstract void setRootNode(Node<T> node);
 
     public abstract Key<T> insert(T value);
 

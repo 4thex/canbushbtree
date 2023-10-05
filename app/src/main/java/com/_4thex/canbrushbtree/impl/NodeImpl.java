@@ -9,65 +9,68 @@ import com._4thex.canbrushbtree.Tree;
 
 public class NodeImpl<T extends Comparable<T>> extends Node<T> {
 
-    private Vector<Key<T>> keys;
+    private Key<T> median;
     private Tree<T> tree;
     private Node<T> parent;
-    
+    private int count;
     public NodeImpl(Tree<T> tree, Node<T> parent) {
         this.tree = tree;
         this.parent = parent;
-        this.keys = new Vector<Key<T>>();
     }
 
     @Override
     public int getCount() {
-        return this.keys.size();
+        return this.count;
     }
 
     @Override
     public void insert(Key<T> key) {
-        if(this.getCount()==0) {
-            this.keys.add(key);
-            return;
+        if(this.median == null) {
+            this.median = key;
+        } else if(key.get().compareTo(median.get()) > 0) {
+            this.median.setGreaterSibling(key);
+            key.setLesserSibling(this.median);
         }
-        Key<T> current = this.getMedianKey();
-        if(current.get().compareTo(key.get()) == 0) {
-            // Nothing to do
-            return;
-        }
-        if(current.get().compareTo(key.get()) > 0) {
-
-        }
-        this.keys.add(key);
-    }
-
-    @Override
-    public Key<T> getLowestKey() {
-        return this.keys.get(0);
-    }
-
-    @Override
-    public Key<T> getHighestKey() {
-        return this.keys.get(this.keys.size()-1);
-    }
-
-    @Override
-    public Key<T> getMedianKey() {
-        return this.keys.get(this.keys.size()/2);
+        this.count++;
     }
 
     @Override
     public SearchResult<T> search(T value) {
-        Key<T> median = this.getMedianKey();
-        if(median.get().equals(value)) {
-            return SearchResult.createFound(median);
+        T medianValue = this.median.get();
+        if(medianValue.equals(value)) {
+            return SearchResult.createFound(this.median);
         }
-        return SearchResult.createNotFound();
+        Key<T> greaterKey = this.median.getGreaterSibling();
+        return null;
     }
 
     @Override
     public void remove(Key<T> key) {
         
+    }
+
+    @Override
+    public Key<T> getMedian() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMedian'");
+    }
+
+    @Override
+    public void setMedian(Key<T> key) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setMedian'");
+    }
+
+    @Override
+    public Node<T> getParent() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getParent'");
+    }
+
+    @Override
+    public void setParent() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setParent'");
     }
     
 }
