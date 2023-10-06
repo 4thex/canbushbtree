@@ -51,4 +51,17 @@ public class NodeTest {
         assertTrue(result.getFound());
         assertEquals(6, result.getKey().get());
     }
+
+    @Test
+    void searchFindsKeyInTrippleKeyNode() {
+        Key<Integer> key1 = this.factory.createKey(this.tree, 5);
+        this.node.insert(key1);
+        Key<Integer> key2 = this.factory.createKey(this.tree, 6);
+        this.node.insert(key2);
+        Key<Integer> key3 = this.factory.createKey(this.tree, 7);
+        this.node.insert(key3);
+        SearchResult<Integer> result = node.search(6);
+        assertTrue(result.getFound());
+        assertEquals(6, result.getKey().get());
+    }
 }

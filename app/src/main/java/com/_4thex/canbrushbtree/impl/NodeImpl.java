@@ -24,24 +24,56 @@ public class NodeImpl<T extends Comparable<T>> extends Node<T> {
     }
 
     @Override
-    public void insert(Key<T> key) {
+    public void insert(Key<T> key) {     
+        this.count++;
         if(this.median == null) {
             this.median = key;
-        } else if(key.get().compareTo(median.get()) > 0) {
-            this.median.setGreaterSibling(key);
-            key.setLesserSibling(this.median);
+            return;
         }
-        this.count++;
+        Key<T> current = this.median;
+        T value = key.get();
+        while(value.compareTo(current.get()) > 0) {
+            if(current.getGreaterSibling() == null) {
+                current.setGreaterSibling(key);
+                this.setMedian(this.median.getGreaterSibling());
+                return;
+            }
+            current = current.getGreaterSibling();
+        }
+        if(value.equals(current.get())) {
+            // TODO Decide what to do with duplicate key
+            return;
+        }
+        while(value.compareTo(current.get()) < 0) {
+            if(current.getLesserSibling() == null) {
+                current.setLesserSibling(key);
+                this.setMedian(this.median.getLesserSibling());
+                return;
+            }
+            current = current.getLesserSibling();
+        }
+        if(value.equals(current.get())) {
+            // TODO Decide what to do with duplicate key
+            return;
+        }
     }
 
     @Override
     public SearchResult<T> search(T value) {
-        T medianValue = this.median.get();
-        if(medianValue.equals(value)) {
-            return SearchResult.createFound(this.median);
+        Key<T> current = this.median;
+        while(value.compareTo(current.get()) > 0) {
+            current = current.getGreaterSibling();
         }
-        Key<T> greaterKey = this.median.getGreaterSibling();
-        return null;
+        if(value.equals(current.get())) {
+            return SearchResult.createFound(current);
+        }
+        while(value.compareTo(current.get()) < 0) {
+            current = current.getLesserSibling();
+        }
+        if(value.equals(current.get())) {
+            return SearchResult.createFound(current);
+        }
+        return SearchResult.createNotFound();
     }
 
     @Override
@@ -51,14 +83,12 @@ public class NodeImpl<T extends Comparable<T>> extends Node<T> {
 
     @Override
     public Key<T> getMedian() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMedian'");
+        return this.median;
     }
 
     @Override
     public void setMedian(Key<T> key) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setMedian'");
+        this.median = key;
     }
 
     @Override
